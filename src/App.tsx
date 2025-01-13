@@ -23,12 +23,12 @@ function App() {
   }, [])
 
   const [result, setResult] = useState<Result | null>(null)
-  const [loading, setLoading] = useState(false)
-  const [error, setError] = useState(null)
+  // const [loading, setLoading] = useState(false)
+  // const [error, setError] = useState(null)
 
   const callApi = async () => {
-    setLoading(true)
-    setError(null)
+    // setLoading(true)
+    // setError(null)
     const guideline = `
     Please review the following code for the following aspects:
     
@@ -80,9 +80,9 @@ function App() {
       const data = await response.json()
       setResult(data)
     } catch (err: any) {
-      setError(err.message)
+      // setError(err.message)
     } finally {
-      setLoading(false)
+      // setLoading(false)
     }
   }
 
