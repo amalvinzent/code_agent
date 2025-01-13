@@ -17,17 +17,17 @@ interface Result {
 }
 
 function App() {
-  const [code, setCode] = React.useState('')
+  const [code, setCode] = useState('')
   const onChange = useCallback((val: string) => {
     setCode(val)
   }, [])
 
   const [result, setResult] = useState<Result | null>(null)
-  // const [loading, setLoading] = useState(false)
+  const [loading, setLoading] = useState(false)
   // const [error, setError] = useState(null)
 
   const callApi = async () => {
-    // setLoading(true)
+    setLoading(true)
     // setError(null)
     const guideline = `
     Please review the following code for the following aspects:
@@ -44,13 +44,9 @@ function App() {
     10. **Refactoring**: Are there opportunities to improve the code structure or design?
     11. **Compliance with Coding Standards**: Does the code adhere to relevant coding standards and best practices?
     12. **Modularity and Design**: Is the code well-structured into modular components and is the design sound?
-    
     Here is the code to review:
-    
     ${code}
     `
-
-    console.log(guideline)
 
     try {
       const response = await fetch(
@@ -82,7 +78,7 @@ function App() {
     } catch (err: any) {
       // setError(err.message)
     } finally {
-      // setLoading(false)
+      setLoading(false)
     }
   }
 
@@ -100,12 +96,20 @@ function App() {
           onChange={onChange}
           style={{ backgroundColor: '#57A6A1' }}
         />
-        <button className="review_button" onClick={callApi}>
-          Review code
-        </button>
+        {code && (
+          <button className="review_button" onClick={callApi}>
+            Review code
+          </button>
+        )}
       </div>
       <div className="right">
-        <ReactMarkdown children={markdownContent} />
+        {loading ? (
+          <div className="loader-container">
+            <div className="loader"></div>
+          </div>
+        ) : (
+          <ReactMarkdown children={markdownContent} />
+        )}
       </div>
     </div>
   )
