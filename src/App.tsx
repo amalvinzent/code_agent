@@ -30,22 +30,73 @@ function App() {
     setLoading(true)
     // setError(null)
     const guideline = `
-    Please review the following code for the following aspects:
+    Please review the following code according to the aspects listed below. Provide a detailed response in **Markdown format**, with clear explanations and examples where applicable. 
     
-    1. **General Code Quality**: Is the code well-written and maintainable?
-    2. **Performance Optimization**: Are there any performance bottlenecks or inefficiencies?
-    3. **Security**: Are there any security vulnerabilities or potential threats?
-    4. **Error Handling**: Is the error handling robust and does it cover edge cases?
-    5. **Code Duplication and Reusability**: Are there repeated code blocks, and is the code modular?
-    6. **Testing**: Are there sufficient tests, and is the testing approach effective?
-    7. **Scalability**: Can the code scale to handle increasing loads or complexity?
-    8. **Documentation and Comments**: Are the code and functions properly documented?
-    9. **Readability**: Is the code easy to read, understand, and follow?
-    10. **Refactoring**: Are there opportunities to improve the code structure or design?
-    11. **Compliance with Coding Standards**: Does the code adhere to relevant coding standards and best practices?
-    12. **Modularity and Design**: Is the code well-structured into modular components and is the design sound?
+    For each aspect, please:
+    1. Use **Markdown headings** to separate each section.
+    2. Use **bullet points** for explanations or observations.
+    3. Provide **code snippets** in code blocks (triple backticks) for specific examples or suggested changes.
+    
+    Here are the review aspects:
+    
+    ### 1. **General Code Quality**
+    - Is the code well-written, clear, and maintainable? Discuss the clarity of variable names, function definitions, and overall structure.
+    - Provide examples where possible, such as unclear variable names or convoluted logic.
+    
+    ### 2. **Performance Optimization**
+    - Are there any performance bottlenecks or inefficiencies? Identify areas where performance can be improved.
+    - Suggest optimizations or more efficient algorithms where applicable.
+    
+    ### 3. **Security**
+    - Are there any security vulnerabilities or risks, such as SQL injection, XSS, or improper data handling? 
+    - Provide suggestions to mitigate any vulnerabilities.
+    - Include code examples if any changes are needed to improve security.
+    
+    ### 4. **Error Handling**
+    - Is error handling sufficient and robust? Does the code account for edge cases and unexpected inputs?
+    - Provide suggestions for improving error handling (e.g., better logging, user feedback).
+    - Include examples of missing or weak error handling.
+    
+    ### 5. **Code Duplication and Reusability**
+    - Are there any duplicated code blocks or sections that could be refactored into reusable functions or modules?
+    - Suggest any areas for refactoring to improve modularity and reduce repetition.
+    - Provide code examples if applicable.
+    
+    ### 6. **Testing**
+    - Does the code have sufficient unit or integration tests? How effective is the testing approach?
+    - Are there areas of the code that lack tests? Suggest additional tests to cover edge cases.
+    - If necessary, provide examples of test cases that could improve the test coverage.
+    
+    ### 7. **Scalability**
+    - Can the code handle increased data volume or user load? Identify any potential scalability concerns.
+    - Suggest improvements if the code might struggle to scale effectively.
+    
+    ### 8. **Documentation and Comments**
+    - Is the code well-documented? Are functions, classes, and logic sections clearly explained?
+    - Are the comments helpful and concise? Provide suggestions for improving documentation and comment clarity.
+    
+    ### 9. **Readability**
+    - Is the code easy to read and understand for other developers? Consider the use of indentation, variable naming, and overall layout.
+    - Suggest improvements for readability if needed, including better naming conventions or code organization.
+    
+    ### 10. **Refactoring**
+    - Are there opportunities to improve the code structure or design for better maintainability, performance, or clarity?
+    - Provide specific areas where refactoring could improve the code.
+    
+    ### 11. **Compliance with Coding Standards**
+    - Does the code follow industry-standard coding conventions (e.g., variable naming, formatting, code organization)?
+    - Identify any areas where the code diverges from common standards and suggest corrections.
+    
+    ### 12. **Modularity and Design**
+    - Is the code properly modular? Are functions and classes well-separated, with each having a clear responsibility?
+    - Suggest improvements for making the design cleaner and more maintainable.
+    
+    ### Please provide detailed feedback for each aspect, including code snippets for suggestions and improvements, where applicable.
+    
     Here is the code to review:
+    \`\`\`javascript
     ${code}
+    \`\`\`
     `
 
     try {
