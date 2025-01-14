@@ -28,7 +28,6 @@ function App() {
 
   const callApi = async () => {
     setLoading(true)
-    // setError(null)
     const guideline = `
     Please review the following code according to the aspects listed below. Provide a detailed response in **Markdown format**, with clear explanations and examples where applicable. 
     
