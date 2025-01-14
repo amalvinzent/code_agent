@@ -9,10 +9,6 @@
   overflow: hidden;
 }
 
-.left::-webkit-scrollbar {
-  display: none;
-}
-
 .right {
   width: 50%;
   padding: 1rem 0rem 1rem 1rem;
@@ -21,8 +17,15 @@
   overflow: hidden;
 }
 
+.left::-webkit-scrollbar,
 .right::-webkit-scrollbar {
   display: none;
+}
+
+.left,
+.right {
+  scrollbar-width: thin;
+  scrollbar-color: transparent transparent;
 }
 
 .review_button {
