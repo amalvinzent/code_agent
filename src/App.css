@@ -59,8 +59,8 @@
   border: 5px solid #f3f3f3;
   border-top: 5px solid #3498db;
   border-radius: 50%;
-  width: 2rem;
-  height: 2rem;
+  width: 2.5rem;
+  height: 2.5rem;
   animation: spin 1.5s linear infinite;
 }
 
@@ -86,7 +86,7 @@
 
 @media (max-width: 768px) {
   .loader {
-    width: 1rem;
-    height: 1rem;
+    width: 1.5rem;
+    height: 1.5rem;
   }
 }
