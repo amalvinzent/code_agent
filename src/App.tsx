@@ -1,4 +1,4 @@
-import { useCallback, useState } from 'react'
+import { useCallback, useEffect, useRef, useState } from 'react'
 import CodeMirror from '@uiw/react-codemirror'
 import { javascript } from '@codemirror/lang-javascript'
 import ReactMarkdown from 'react-markdown'
@@ -15,6 +15,44 @@ interface Candidate {
 
 interface Result {
   candidates: Candidate[]
+}
+
+function TypingEffectMarkdown({ content }: { content: string }) {
+  if (!content) return
+  const [text, setText] = useState('')
+  const containerRef = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    let index = 0
+    const intervalId = setInterval(() => {
+      setText((prev) => prev + content[index])
+      index += 1
+
+      if (index === content.length - 1) {
+        clearInterval(intervalId)
+      }
+    }, 2)
+    return () => clearInterval(intervalId)
+  }, [content])
+
+  useEffect(() => {
+    if (containerRef.current) {
+      containerRef.current.scrollTop = containerRef.current.scrollHeight
+    }
+  }, [text])
+
+  return (
+    <div
+      ref={containerRef}
+      className="scroll-smooth"
+      style={{
+        maxHeight: '100vh',
+        overflowY: 'auto'
+      }}
+    >
+      <ReactMarkdown>{text}</ReactMarkdown>
+    </div>
+  )
 }
 
 function App() {
@@ -159,7 +197,7 @@ function App() {
             <div className="loader"></div>
           </div>
         ) : (
-          <ReactMarkdown children={markdownContent} />
+          <TypingEffectMarkdown content={markdownContent} />
         )}
       </div>
       <Toaster />
