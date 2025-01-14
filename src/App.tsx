@@ -18,7 +18,7 @@ interface Result {
 }
 
 function TypingEffectMarkdown({ content }: { content: string }) {
-  if (!content) return <div>No content to display</div>
+  if (!content) return
   const [text, setText] = useState('')
   const containerRef = useRef<HTMLDivElement>(null)
 
