@@ -18,7 +18,7 @@ interface Result {
 }
 
 function TypingEffectMarkdown({ content }: { content: string }) {
-  if (!content) return
+  if (!content) return <div>No content to display</div>
   const [text, setText] = useState('')
   const containerRef = useRef<HTMLDivElement>(null)
 
@@ -47,7 +47,7 @@ function TypingEffectMarkdown({ content }: { content: string }) {
       className="scroll-smooth"
       style={{
         maxHeight: '100vh',
-        overflowY: 'auto'
+        overflow: 'auto'
       }}
     >
       <ReactMarkdown>{text}</ReactMarkdown>
@@ -186,7 +186,11 @@ function App() {
           style={{ backgroundColor: '#57A6A1' }}
         />
         {code && (
-          <button className="review_button" onClick={callApi}>
+          <button
+            className="review_button"
+            onClick={callApi}
+            aria-label="Submit code for review"
+          >
             Review code
           </button>
         )}
