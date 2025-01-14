@@ -3,6 +3,7 @@ import CodeMirror from '@uiw/react-codemirror'
 import { javascript } from '@codemirror/lang-javascript'
 import ReactMarkdown from 'react-markdown'
 import './App.css'
+import toast, { Toaster } from 'react-hot-toast'
 
 interface Candidate {
   content: {
@@ -21,10 +22,8 @@ function App() {
   const onChange = useCallback((val: string) => {
     setCode(val)
   }, [])
-
   const [result, setResult] = useState<Result | null>(null)
   const [loading, setLoading] = useState(false)
-  // const [error, setError] = useState(null)
 
   const callApi = async () => {
     setLoading(true)
@@ -100,7 +99,9 @@ function App() {
 
     try {
       const response = await fetch(
-        'https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=AIzaSyBoKPmjPblsB9e_KE-Ay5-f9A9n3mm1DsE',
+        `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${
+          import.meta.env.VITE_API_KEY
+        }`,
         {
           method: 'POST',
           headers: {
@@ -126,7 +127,7 @@ function App() {
       const data = await response.json()
       setResult(data)
     } catch (err: any) {
-      // setError(err.message)
+      toast.error('Something went wrong. Please try again later.')
     } finally {
       setLoading(false)
     }
@@ -161,7 +162,9 @@ function App() {
           <ReactMarkdown children={markdownContent} />
         )}
       </div>
+      <Toaster />
     </div>
   )
 }
+
 export default App

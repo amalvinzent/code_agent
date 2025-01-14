@@ -6,6 +6,7 @@
 .left {
   flex: 1;
   position: relative;
+  overflow: scroll;
 }
 
 .right {
@@ -13,7 +14,7 @@
   padding: 1rem 3rem;
   background-color: #31363f;
   color: #fff;
-  overflow-y: scroll;
+  overflow: scroll;
 }
 
 .review_button {
