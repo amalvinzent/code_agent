@@ -185,7 +185,7 @@ function App() {
           onChange={onChange}
           style={{ backgroundColor: '#57A6A1' }}
         />
-        {code && (
+        {code && !loading && (
           <button
             className="review_button"
             onClick={callApi}
