@@ -46,7 +46,7 @@ function TypingEffectMarkdown({ content }: { content: string }) {
       ref={containerRef}
       className="scroll-smooth"
       style={{
-        maxHeight: '100vh',
+        maxHeight: '95vh',
         overflow: 'auto'
       }}
     >
